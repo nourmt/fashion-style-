@@ -1,6 +1,6 @@
 const data=[
 {
-    article:"casual clothers",
+    article:"Outfit Inspo",
     prix:160,
     réduction:20,
     genre:"men",
@@ -8,25 +8,25 @@ const data=[
 
 },
 
-{article:"casual clothers",
+{article:"Classy Yet Trendy",
 prix:100,
-réduction:20,
+réduction:30,
 genre:"women",
 src:"/image/1.jpg"
 
 },
 
-{article:"casual clothers",
-prix:90,
-réduction:20,
+{article:"outfit ideas",
+prix:110,
+réduction:30,
 genre:"men",
-src:"/image/ 2men.jpg"
+src:"/image/2 men.jpg"
 
 },
 
 {article:"casual clothers",
 prix:100,
-réduction:20,
+réduction:50,
 genre:"women",
 src:"/image/2.jpg"
 
@@ -194,8 +194,8 @@ src:"/image/2.jpg"
 {
     
     article:"casual clothers",
-    prix:110,
-    réduction:30,
+    prix:210,
+    réduction:50,
     genre:"kids",
     src:"/image/kids 3.jpg"
 
@@ -212,8 +212,8 @@ src:"/image/2.jpg"
 {
     
     article:"casual clothers",
-    prix:200,
-    réduction:50,
+    prix:170,
+    réduction:30,
     genre:"kids",
     src:"/image/kids 5.jpg",
 
@@ -235,7 +235,84 @@ src:"/image/2.jpg"
     genre:"kids",
     src:"/image/kids 7.jpg"
 
-},
+},]
+
+var each=function(arr,fn){
+    if(Array.isArray(arr)){
+        for(var i=0;i<arr.length;i++){
+            fn(arr[i])
+        }
+    }else if(!Array.isArray(arr)&&typeof(arr)==="object"){
+        for(var j in arr){
+            fn(arr[j])
+        }
+    }
+}
+$("#n3").on("click",function(e){
+   if($("#container").children().length===0){
+    each(data,function(a){
+        var div1 = $(`<div class="col-md-4">`)
+        var card = $(`<div class="card">`)
+        var card1=$(`<div class="d-flex justify-content-between align-items-end">`)
+        var discount=$(`<small class="ml-1 noor">`+a.réduction+`%</small> `)
+        var card2=$(`<div class="text-center">`)
+        var img=$(`<img width="250" height="400">`)
+        img.attr("src", a.src);
+        var card3=$(`<div class="text-center">`)
+        var title=$(`<h5>`+a.article+`</h5>`)
+        var price=$(`<span class="text-success">$`+a.prix+`</span>`)
+        $("#container").append(div1);
+        div1.append(card)
+        card.append(card1)
+        card1.append(discount)
+        card.append(card2)
+        card2.append(img)
+        card.append(card3)
+        card3.append(title)
+        card3.append(price)
+        })}
+})
+$("#n1").on("click",function(e){
+    $(".col-md-4").remove();
+    
+})
+
+  $("#n4").on("click",function(e){
+    $(".col-md-4").append('<li>  <a href="https://www.chanel.com/fr/" target="_blank">chanel</a> </li>');
+  })
+
+
+function filtered(réduction){
+    var acc=[]
+    for(var i=0;i<data.length;i++){
+        if(data[i].réduction===réduction){
+            acc.push (data[i])
+        }
+    }
+console.log(acc)
+$("#container").empty()
+for(var i=0;i<acc.length;i++){
+    var div1 = $(`<div class="col-md-4">`)
+        var card = $(`<div class="card">`)
+        var card1=$(`<div class="d-flex justify-content-between align-items-end">`)
+        var discount=$(`<small class="ml-1 noor">`+acc[i].réduction+`%</small> `)
+        var card2=$(`<div class="text-center">`)
+        var img=$(`<img width="250" height="400">`)
+        img.attr("src", acc[i].src);
+        var card3=$(`<div class="text-center">`)
+        var title=$(`<h5>`+acc[i].article+`</h5>`)
+        var price=$(`<span class="text-success">$`+acc[i].prix+`</span>`)
+        $("#container").append(div1);
+        div1.append(card)
+        card.append(card1)
+        card1.append(discount)
+        card.append(card2)
+        card2.append(img)
+        card.append(card3)
+        card3.append(title)
+        card3.append(price)
+}
+}
 
 
 
@@ -256,9 +333,4 @@ src:"/image/2.jpg"
 
 
 
-
-
-
-
-]
 
